@@ -1,0 +1,13 @@
+.activado{
+	color:black;
+}
+.desactivado{
+	color:#777;
+	background-color: #FFE9E9;
+}
+
+
+.miOS{
+	color:#000;
+	background-color: #E0F8E0;;
+}
