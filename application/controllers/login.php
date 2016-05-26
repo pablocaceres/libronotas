@@ -16,7 +16,7 @@ class Login extends CI_Controller {
 	//Metodo Login, Trae la vista del LogIn
 	public function index(){
 		if($this->session->userdata('name') != ''){
-			redirect(base_url('index.php/libro'),'refresh');
+			redirect(base_url('index.php/libro/libroyear/2016'),'refresh');
 		}
 		$this->load->view('login/login');
 	}

@@ -3,25 +3,19 @@
 
     <head>
        <!--  <title><?php echo $titulo;?></title>
-        <!-- Bootstrap
-        <link href="<?php echo base_url('public/bootstrap/css/bootstrap.css');?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/bootstrap/css/bootstrap-responsive.css');?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/vendors/easypiechart/jquery.easy-pie-chart.css');?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/assets/styles.css');?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/vendors/jGrowl/jquery.jgrowl.css');?>" rel="stylesheet" media="screen">
-        <link href="<?php echo base_url('public/vendors/uniform.default.css');?>" rel="stylesheet" media="screen"> -->
+        <
 
         <!-- Bootstrap Core CSS -->
-        <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo base_url('bower_components/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
-        <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+        <link href="<?php echo base_url('bower_components/metisMenu/dist/metisMenu.min.css')?>" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+        <link href="<?php echo base_url('dist/css/sb-admin-2.css')?>" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url('bower_components/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet" type="text/css">
 
 
         <link href="<?php echo base_url('public/css_propios/css_propios.css');?>" rel="stylesheet" media="screen">
@@ -68,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+                <a class="navbar-brand" href="index.html">Libro de Notas v2.0 SRGI - UNNE</a>
             </div>
              <!-- /.navbar-header -->
 
@@ -285,21 +279,32 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
+                        <!-- <li class="sidebar-search"> -->
+                            <!-- <div class="input-group custom-search-form"> -->
+                                <!-- <input type="text" class="form-control" placeholder="Search..."> -->
+                                <!-- <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
-                                </span>
-                            </div>
+                                </span> -->
+                            <!-- </div> -->
                             <!-- /input-group -->
+                        <!-- </li> -->
+                        <li class="active">
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Inicio<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url('index.php/libro/libroyear/'.date("Y"));?>"> <i class="fa fa-list" aria-hidden="true"></i>
+ Libro de notas</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+</i>
+                                       Resoluciones PDF </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
+                       <!-- <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -308,10 +313,10 @@
                                 <li>
                                     <a href="morris.html">Morris.js Charts</a>
                                 </li>
-                            </ul>
+                            </ul> -->
                             <!-- /.nav-second-level -->
-                        </li>
-                        <li>
+                        <!-- </li> -->
+                        <!-- <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
@@ -340,8 +345,8 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
-                        <li>
+                        <!-- </li> -->
+                        <!-- <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -365,24 +370,31 @@
                                         <li>
                                             <a href="#">Third Level Item</a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                     <!-- /.nav-third-level -->
+                                <!-- </li> -->
+                            <!-- </ul> -->
+                            <!-- /.nav-second-level -->
+                        <!-- </li> -->
+                        <!-- <li>
+                            <a class="clo" href="#"><i class="fa fa-files-o fa-fw"></i>Registro por año<span class="fa arrow"></span></a> -->
+                            <!-- /.nav-second-level -->
+                              <!-- <ul class="nav nav-second-level">
+                                <li>
+                                     <a href="<?php echo base_url('index.php/libro');?>">2016</a>
+                                </li>
+                                <li>
+                                    <a href="#">2015</a>
+                                </li>
+                                <li>
+                                    <a href="#">2014</a>
+                                </li>
+                                <li>
+                                    <a href="#">2015</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li class="active">
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a class="active" href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -470,9 +482,9 @@
                                     </li>
                                 </ul>
                             </li> -->
-                        </ul>
-                    </div>
+                        <!-- </ul> -->
+                    <!-- </div> -->
                     <!--/.nav-collapse -->
-                </div>
-            </div>
+                <!-- </div> -->
+            <!-- </div> -->
         </div>

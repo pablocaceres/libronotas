@@ -11,23 +11,50 @@
             //$sgf = $this->load->database('db_sga', TRUE);
         }
 
+        //me trae toda la base libro_db
       	public function libro($id){
-          $this->db->select('libro.id, libro.fecha, origen.desc as origen, libro.destino, libro.concepto, libro.nroexpete, libro.nroresol, libro.observaciones, libro.pdf, libro.convenio, libro.activo');
+          $this->db->select('libro.id as Lid, libro.nro_nota, libro.fecha, origen.desc as origen, libro.destino, libro.concepto, libro.nroexpete, libro.nroresol, libro.observaciones, libro.pdf, libro.convenio, libro.activo');
           //$this->db->select('*');
           $this->db->from('libro');
           $this->db->join('origen', 'origen.id = libro.origen_id');
           $this->db->order_by ('libro.id',"desc");
 
+          //solo trae un registro con id
           if($id != 0){
-              $this->db->where('id = '.$id);
+              $this->db->where('libro.id = '.$id);
           }
       		$query = $this->db->get();
-        	return $query->result();
+        	return $query->row();
           //return $this->db->last_query(); //MUESTAS LA CONSULTA
       	}
 
+        public function un_libro($id){
+          $this->db->select('libro.id as Lid, libro.nro_nota, libro.fecha, libro.origen_id, libro.destino, libro.concepto, libro.nroexpete, libro.nroresol, libro.observaciones, libro.pdf, libro.convenio, libro.activo');
+          //$this->db->select('*');
+          $this->db->from('libro');
+          $this->db->order_by ('libro.id',"desc");
+          //solo trae un registro con id
+          if($id != 0){
+              $this->db->where('libro.id = '.$id);
+          }
+      		$query = $this->db->get();
+        	return $query->row();
+          //return $this->db->last_query(); //MUESTAS LA CONSULTA
+      	}
+        //trar tabla solo de un año especifico
+        public function libroyear($year){
+          $this->db->select('libro.id, libro.nro_nota, libro.fecha, origen.desc as origen, libro.destino, libro.concepto, libro.nroexpete, libro.nroresol, libro.observaciones, libro.pdf, libro.convenio, libro.activo');
+          $this->db->from('libro');
+          $this->db->where('fecha >=', $year.'-01-01');
+          $this->db->where('fecha <=', $year.'-12-31');
+          $this->db->join('origen', 'origen.id = libro.origen_id');
+          $this->db->order_by ('libro.nro_nota',"desc");
+      		$query = $this->db->get();
+        	return $query->result();
+      	}
+
         //alta
-        public function new_libro ($data){
+        public function new_libro($data){
           //$data = array('desc'=> $desc);
           return $this->db->insert('libro',$data);
         }
@@ -35,7 +62,8 @@
         //baja
         public function eliminar_libro($data){
           //$data = array('id'=>$id);
-          return $this->db->delete('libro',$data);
+          $this->db->where('id',$data['id']);
+          return $this->db->update('libro',$data);
         }
 
         //modificacin
@@ -71,6 +99,21 @@
                $variable = $row['id'];
             }
           return $variable;
+        }
+
+        //retorna el MAX nro_nota entre 2016-01-01 y 2016-12-31
+        public function maximo_nro_nota($año){
+          $this->db->select_max('nro_nota');
+          //$this->db->where('fecha BETWEEN 2016-01-01 AND 2016-12-31');
+          $this->db->where('fecha >=', $año.'-01-01');
+          $this->db->where('fecha <=', $año.'-12-31');
+          //$this->db->mysql_insert_id('id');
+          $query = $this->db->get('libro');
+          foreach ($query->result_array() as $row)
+            {
+               $variable = $row['nro_nota'];
+            }
+          return $variable+1;
         }
 
 
