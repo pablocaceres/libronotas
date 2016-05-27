@@ -5937,6 +5937,28 @@ button.close {
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
+
+}
+.modal-header.success{
+
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #4cae4c;
+  color: #fff;
+  border-radius: 4px;
+
+}
+.modal-header.info{
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #46b8da;
+  color: #fff;
+}
+.modal-header.danger{
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #d43f3a;
+  color: #fff;
 }
 .modal-header .close {
   margin-top: -2px;

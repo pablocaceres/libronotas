@@ -67,10 +67,10 @@
         }
 
         //modificacin
-        public function editar_libro($data){
+        public function editar_libro($where, $data){
           //el $data['id'] lee el id del array y lo compara con el where
-          $this->db->where('id',$data['id']);
-          return $this->db->update('libro',$data);
+          $this->db->where('id', $where);
+          return $this->db->update('libro', $data);
 
         }
 

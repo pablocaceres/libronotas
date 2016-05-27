@@ -45,7 +45,7 @@ $(document).ready(function() {
 <!-- formulariomodal NUEVO LIBRO -->
 <script type="text/javascript">
   function desplegar(){
-    
+    $('#form_new')[0].reset(); // reset form on modals
     $("#formulariomodal").modal("show");//ABRO EL POPUP MyModal
   }
 
@@ -209,7 +209,7 @@ $(document).ready(function() {
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header danger">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Anular Nota</h4>
       </div>
@@ -241,13 +241,13 @@ $(document).ready(function() {
 
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header success">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Nuevo registro</h4>
         </div>
         <div class="modal-body">
           <!-- FORMULARIO -->
-          <form class="form-horizontal"  action="<?php echo base_url('index.php/libro/new_libro')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
+          <form class="form-horizontal"  id="form_new" action="<?php echo base_url('index.php/libro/new_libro')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
           <!-- <form class="form-horizontal"  action="http://localhost/codeigniter/prueba/index.php/libro/new_libro" method="post" accept-charset="utf-8"> -->
             <!-- Fecha -->
             <div class="form-group">
@@ -351,21 +351,23 @@ $(document).ready(function() {
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header info">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title">Editar registro</h4>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body well">
               <!-- FORMULARIO -->
               <form class="form-horizontal"  id="form" action="<?php echo base_url('index.php/libro/editar_libro')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
               <!-- <form class="form-horizontal"  action="http://localhost/codeigniter/prueba/index.php/libro/new_libro" method="post" accept-charset="utf-8"> -->
-              <input type="HIDDEN" id="Liv">
+
+              <input type="hidden" value="0" name="id_nota_edit"/>
               <!-- Muestro numero de nota -->
               <div class="form-group">
                 <label class="control-label col-sm-2">Nro Nota:</label>
                 <div class="col-sm-10">
                     <input name="nro_nota" class="form-control" disabled >
+                    <input type="hidden" value="0" name="nro_nota"/>
                 </div>
               </div>
                 <!-- Fecha -->
@@ -482,18 +484,17 @@ $(document).ready(function() {
     //save_method = 'update';
     $('#form')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
-    $('.help-block').empty(); // clear error string
+    //$('.help-block').empty(); // clear error string
 
     //Ajax Load data from ajax
     $.ajax({
         url : "<?php echo base_url("index.php/libro/ajax_edit");?>/" + id,
-        type: "GET",
+        type: "POST",
         dataType: "JSON",
         success: function(data)
         {
             //data = JSON.parse(data)
-            //console.log(data);
-            $('[name="id"]').val(data.Liv);
+            $('[name="id_nota_edit"]').val(data.Lid);
             $('[name="nro_nota"]').val(data.nro_nota);
             $('[name="fecha"]').val(data.fecha);
             $('[name="origen_id"]').val(data.origen_id);
@@ -505,6 +506,7 @@ $(document).ready(function() {
             $('[name="convenio"]').val(data.convenio);
             // pdf ???  $('[name="nroexpete"]').val(data,data.nroexpete);
             $('#editar_nota_modal').modal('show'); // show bootstrap modal when complete loaded
+            //console.log(data);
 
         },
         error: function (jqXHR, textStatus, errorThrown)

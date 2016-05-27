@@ -109,6 +109,7 @@ public function new_libro($id=0){
 					//graba el array
 					$this->libroModel->new_libro($data);
 					//variables para el mje de guardado flashdata
+
 					//traigo el maximo nro_nota de un año y le resto 1 xq la funtion ya me suma +1
 					$nronota= $this->libroModel->maximo_nro_nota($año)-1;
 					//variables para el flashdata
@@ -160,9 +161,9 @@ public function eliminar_libro($id,$nro_nota,$año){
 
 						//genera array para grabar en base de datos
 	          $data = array(
-							'id'=>$this->input->post('Liv'),
+							//'id'=>$this->input->post('Lid'),
 							'fecha'=>$this->input->post('fecha'),
-							//'origen_id'=>$this->input->post('origen'),
+							'origen_id'=>$this->input->post('origen_id'),
 							'destino'=>$this->input->post('destino'),
 							'concepto'=>$this->input->post('concepto'),
 							'nroexpete'=>$this->input->post('nroexpete'),
@@ -171,25 +172,24 @@ public function eliminar_libro($id,$nro_nota,$año){
 							'pdf'=>$file_name,//guardo la ruta donde esta el pdf (../public/pdf/nombre.pdf)
 							'convenio'=>$this->input->post('convenio'),
 						);
-						//traigo el maximo nro_nota de un año y le resto 1 xq la funtion ya me suma +1
-						$nronota= $this->libroModel->maximo_nro_nota($año)-1;
+						//traigo el maximo nro_nota de un año y le resto 1 xq la funtion ya me suma +1 para mostrar grid
+						//$nronota= $this->libroModel->maximo_nro_nota($año)-1;
+						$id_nota = $this->input->post('id_nota');
 
 						//graba el array
-						if ($this->libroModel->editar_libro($data)) {
-
+						if ($this->libroModel->editar_libro($id_nota, $data)) {
 							//variables para el flashdata
 							$msj = 'Se Edito correctamente';
 							$tipo = 'info';
-						}else{
+							$nronota = $this->input->post('nro_nota');
+						}
 						//variables para el mje de guardado flashdata
-
-
 						$this->session->set_flashdata('nronota', $nronota);
 						$this->session->set_flashdata('inst_edit', $msj);
 						$this->session->set_flashdata('inst_edit_tipo', $tipo);
 						redirect(base_url().'index.php/libro/libroyear/'.$año);
-					}
-		// $this->output->enable_profiler(TRUE);
+						echo json_encode(array("status" => TRUE));
+	 				//$this->output->enable_profiler(TRUE);
 		}
 
 			// if ($this->form_validation->run() === FALSE)
