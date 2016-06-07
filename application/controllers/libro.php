@@ -34,6 +34,18 @@ class Libro extends CI_Controller {
 		//$this->output->enable_profiler(TRUE);
 	}
 
+	// muestra tabla (vista libro/resol)
+	public function resol(){
+		$libro = $this->libroModel->libro_resol(0);
+		$data['data']['titulo'] = 'Resoluciones PDF';
+		$data['origen'] = $this->libroModel->origen_array(0);
+		$data['data']['libro'] = $libro;
+		$data['error_archivo']=$this->upload->display_errors();
+		$data['contenido'] = 'libro/resol';
+		$this->load->view('layouts/plantilla',$data);
+		//$this->output->enable_profiler(TRUE);
+	}
+
 	// muestra tabla por año (vista index libro)
 	public function libroyear($year){
 		$libro = $this->libroModel->libroyear($year);

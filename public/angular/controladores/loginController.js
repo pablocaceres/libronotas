@@ -26,7 +26,7 @@ function loginController($scope,$http){
 				       $.jGrowl('Verifique sus datos!', { header: 'Error!!!' });
 				       break
 				    case '1':
-				       $(location).attr('href','index.php/libro');
+				       $(location).attr('href','index.php/libro/libroyear/2016');
 				       break
 				    case '2':
 				    	$.jGrowl('Esta cuenta esta bloqueada, comuniquese con el administrador', { header: 'Error!!!' });

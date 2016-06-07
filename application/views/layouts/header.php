@@ -298,7 +298,7 @@
  Libro de notas</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                                    <a href="<?php echo base_url('index.php/libro/resol/');?>"><i class="fa fa-folder-open-o" aria-hidden="true"></i>
 </i>
                                        Resoluciones PDF </a>
                                 </li>

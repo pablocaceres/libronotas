@@ -86,7 +86,7 @@ $(document).ready(function() {
                     <div class="col-lg-12">
                         <h1 class="page-header"><?php echo $titulo; ?></h1>
                     </div>
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12"> -->
 
 
                         <!-- panel-default -->
@@ -96,7 +96,7 @@ $(document).ready(function() {
                                 <!-- <a href="javascript:desplegar();"><button class="btn btn-success">Nuevo Registro</button></a> -->
                                 <div>
 
-                                  <button type="button" class="btn btn-success" onclick="desplegar()">Nuevo Registro </button>
+                                  <button type="button" class="btn btn-success" onclick="desplegar()">Nuevo N° Nota </button>
 
                                   <div class="col-sm-10">
 
@@ -137,11 +137,9 @@ $(document).ready(function() {
                                     <th>Origen</th>
                                     <th>Destino</th>
                                     <th >Concepto</th>
-                                    <th>Nro de Expete.</th>
-                                    <th>Nro Resol</th>
                                     <th>Observ</th>
-                                    <!-- <th>PDF</th> -->
                                     <th>Convenio</th>
+                                    <th>N° Expete.</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
@@ -154,8 +152,7 @@ $(document).ready(function() {
                                   <td><?php echo $v->origen;?></td>
                                   <td><?php echo $v->destino;?></td>
                                   <td><?php echo $v->concepto;?></td>
-                                  <td><?php echo $v->nroexpete;?></td>
-                                  <td><?php echo $v->nroresol;?></td>
+                                  <!-- <td><?php echo $v->nroresol;?></td> -->
                                   <td><?php echo $v->observaciones;?></td>
                                      <!-- <?php if ($v->pdf == ''){?> -->
                                       <!-- <td></td> -->
@@ -173,6 +170,7 @@ $(document).ready(function() {
                                           }
                                       ?>
                                   </td>
+                                  <td><?php echo $v->nroexpete;?></td>
                                   <td>
                                     <!-- si activo == 0 entonces muestra anulado y se borran los botones -->
                                     <?php if($v->activo == 1){?>
@@ -243,7 +241,7 @@ $(document).ready(function() {
       <div class="modal-content">
         <div class="modal-header success">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Nuevo registro</h4>
+          <h4 class="modal-title">Nuevo N° Nota</h4>
         </div>
         <div class="modal-body">
           <!-- FORMULARIO -->
@@ -356,12 +354,12 @@ $(document).ready(function() {
               <h4 class="modal-title">Editar registro</h4>
             </div>
 
-            <div class="modal-body well">
+            <div class="modal-body">
               <!-- FORMULARIO -->
               <form class="form-horizontal"  id="form" action="<?php echo base_url('index.php/libro/editar_libro')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data" >
               <!-- <form class="form-horizontal"  action="http://localhost/codeigniter/prueba/index.php/libro/new_libro" method="post" accept-charset="utf-8"> -->
 
-              <input type="hidden" value="0" name="id_nota_edit"/>
+              <input type="hidden" value="0" name="id_nota"/>
               <!-- Muestro numero de nota -->
               <div class="form-group">
                 <label class="control-label col-sm-2">Nro Nota:</label>
@@ -426,6 +424,7 @@ $(document).ready(function() {
 
                 <!-- salto de linea -->
                 <HR>
+                  <div class="modal-content well">
                   <!-- nroexpete -->
                   <div class="form-group">
                     <label class="control-label col-sm-2">Nro Expte</label>
@@ -463,11 +462,12 @@ $(document).ready(function() {
               </div>
             <!-- cierro div del body -->
             </div>
+          </div>
 
             <!-- </div> -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Guardar</button>
+              <button type="submit" class="btn btn-info">Guardar</button>
               <?php echo form_close();?>
             </div>
           </div>
@@ -494,7 +494,7 @@ $(document).ready(function() {
         success: function(data)
         {
             //data = JSON.parse(data)
-            $('[name="id_nota_edit"]').val(data.Lid);
+            $('[name="id_nota"]').val(data.Lid);
             $('[name="nro_nota"]').val(data.nro_nota);
             $('[name="fecha"]').val(data.fecha);
             $('[name="origen_id"]').val(data.origen_id);

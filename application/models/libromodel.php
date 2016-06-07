@@ -24,7 +24,24 @@
               $this->db->where('libro.id = '.$id);
           }
       		$query = $this->db->get();
-        	return $query->row();
+        	return $query->result();
+          //return $this->db->last_query(); //MUESTAS LA CONSULTA
+      	}
+
+        public function libro_resol($id){
+          $this->db->select('libro.id as Lid, libro.nro_nota, libro.fecha, origen.desc as origen, libro.destino, libro.concepto, libro.nroexpete, libro.nroresol, libro.observaciones, libro.pdf, libro.convenio, libro.activo');
+          //$this->db->select('*');
+          $this->db->from('libro');
+          $this->db->join('origen', 'origen.id = libro.origen_id');
+          $this->db->order_by ('libro.id',"desc");
+          $this->db->where('libro.pdf != ""');
+
+          //solo trae un registro con id
+          if($id != 0){
+              $this->db->where('libro.id = '.$id);
+          }
+      		$query = $this->db->get();
+        	return $query->result();
           //return $this->db->last_query(); //MUESTAS LA CONSULTA
       	}
 
